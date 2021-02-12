@@ -7,33 +7,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 @Controller
 public class HomeController {
-	@RequestMapping("/")
-	public String getAllPosts(Model model) {
-		ArrayList<Post> posts = new ArrayList<>();
+    @RequestMapping("/")
+    public String getAllPosts(Model model){
 
-		Post post1 = new Post();
-		post1.setTitle("Greed");
-		post1.setBody("Ban");
-		post1.setDate(new Date());
+        ArrayList<Post> posts = new ArrayList<>();
 
-		Post post2 = new Post();
-		post2.setTitle("Wrath");
-		post2.setBody("Meliodas");
-		post2.setDate(new Date());
+        Post post1= new Post();
+        post1.setTitle("Mirzapur");
+        post1.setBody("Kalin Bhaia ki sarkar");
+        post1.setDate(new Date());
 
-		Post post3 = new Post();
-		post3.setTitle("Sloth");
-		post3.setBody("King");
-		post3.setDate(new Date());
+        Post post2= new Post();
+        post2.setTitle("Gangs of Wassepur");
+        post2.setBody("Keh ke lenege");
+        post2.setDate(new Date());
 
-		posts.add(post1);
-		posts.add(post2);
-		posts.add(post3);
+        Post post3= new Post();
+        post3.setTitle("Kissan");
+        post3.setBody("Modi ke sarkar");
+        post3.setDate(new Date());
 
-		model.addAttribute("posts", posts);
-		return "index";
-	}
+        posts.add(post1);
+        posts.add(post2);
+        posts.add(post3);
+
+        model.addAttribute("posts",posts);
+        return "index";
+    }
 }
