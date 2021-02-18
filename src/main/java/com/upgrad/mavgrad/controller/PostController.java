@@ -13,25 +13,25 @@ import java.util.Date;
 
 @Controller
 public class PostController {
-    //localhost:8080/posts : GET
-    @Autowired
-    PostService postService;
+	//localhost:8080/posts : GET
+	@Autowired
+	PostService postService;
 	
-    @RequestMapping("/posts")
-    public String getUserPost(Model model){
-        ArrayList<Post> posts= postService.getAllPosts();
-        model.addAttribute("posts",posts);
-        return "posts";
-    }
-    //TODO: GET : posts/newpost  ,  POST: post/create
-    @RequestMapping("/posts/newpost")
-    public String newPost(){
-        return "posts/create";
-    }
-    @RequestMapping(value="/posts/create", method= RequestMethod.POST)
-    public String createPost(Post newPost){
-        newPost.setDate(new Date());
-        postService.createPost(newPost);
-        return "redirect:/posts";
-    }
+	@RequestMapping("/posts")
+	public String getUserPost(Model model){
+		ArrayList<Post> posts= postService.getAllPosts();
+		model.addAttribute("posts",posts);
+		return "posts";
+	}
+	//TODO: GET : posts/newpost  ,  POST: post/create
+	@RequestMapping("/posts/newpost")
+	public String newPost(){
+		return "posts/create";
+	}
+	@RequestMapping(value="/posts/create", method= RequestMethod.POST)
+	public String createPost(Post newPost){
+		newPost.setDate(new Date());
+		postService.createPost(newPost);
+		return "redirect:/posts";
+	}
 }
