@@ -23,7 +23,7 @@ public class PostController {
 		model.addAttribute("posts",posts);
 		return "posts";
 	}
-	//TODO: GET : posts/newpost  ,  POST: post/create
+	//TO DO: GET : posts/newpost  ,  POST: post/create
 	@RequestMapping("/posts/newpost")
 	public String newPost(){
 		return "posts/create";
