@@ -2,10 +2,29 @@ package com.upgrad.mavgrad.model;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users", catalog = "test")
 public class Post {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
+	@Column(name = "title")
 	private String title;
+	@Column(name = "body")
 	private String body;
+	@Column(name = "date")
 	private Date date;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;

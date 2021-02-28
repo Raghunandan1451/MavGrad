@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,8 +42,6 @@ public class UserController {
 
 	@RequestMapping(value="users/login", method= RequestMethod.POST)  // localhost:8080/users/login : POST
 	public String loginUser(User user){
-		System.out.println(user.getUserName());
-		System.out.println(user.getPassword());
 		if(userService.login(user)){
 			return "redirect:/posts"; //localhost:8080/posts : GET
 		}else{
@@ -59,13 +57,10 @@ public class UserController {
 
 	@RequestMapping(value="users/registration", method= RequestMethod.POST)
 	public String registerUser(User user){
-		System.out.println(user.getFullName());
-		System.out.println(user.getUserName());
-		System.out.println(user.getPassword());
-		//TODO : service code to register the user so that you can login with that creds
+		//TO DO : service code to register the user so that you can login with that creds
 		return "redirect:/users/login";
 	}
-	//TODO: logout feature: done
+	//TO DO: logout feature: done
 	public String logout(){
 		return "redirect:index";
 	}
@@ -75,14 +70,14 @@ public class UserController {
 		return userRepository.findByUserName(userName);
 	}
 
-	// @GetMapping("/gellAllUsers")
-	// public List<User> getAllusers() {
-	// 	return userRepository.findAll();
-	// }
+	@GetMapping("/gellAllUsers")
+	public List<User> getAllusers() {
+		return userRepository.findAll();
+	}
 
-	// @RequestMapping(value="createUser", method= RequestMethod.POST)
-	// public User createUser(@RequestBody User user) {
-	// 	return userRepository.save(user);
-	// }
+	@RequestMapping(value="createUser", method= RequestMethod.POST)
+	public User createUser(@RequestBody User user) {
+		return userRepository.save(user);
+	}
 
 }

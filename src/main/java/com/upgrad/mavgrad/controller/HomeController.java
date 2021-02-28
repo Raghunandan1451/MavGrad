@@ -43,11 +43,11 @@ public class HomeController {
 	@RequestMapping("/api/getposts/{user}")
 	public Post getPostByUsername(@PathVariable String user) {
 		Post post1 = new Post();
-		if (user.equals("raghu")) {
+		// if (user.equals("raghu")) {
 			post1.setTitle("Mirzapur");
 			post1.setBody("Kalin Bhaia ki sarkar");
 			post1.setDate(new Date());
-		}
+		// }
 		return post1;
 	}
 }
