@@ -16,28 +16,30 @@ import java.util.List;
 
 @Service
 public class PostService {
-
+	public PostService(){
+		System.out.println("*********** PostService ***********");
+	}
 	@Autowired
-    private PostRepository repository;
-	
+	private PostRepository repository;
+
 	public List<Post> getAllPosts(){
 		return repository.getAllPosts();
 	}
-	
-	public void createPost(Post newPost){
+
+	public void  createPost(Post newPost){
 		Integer id=repository.createPost(newPost);
 		System.out.println("done with create post with Id: "+id);
 	}
 
 	public void deletePost(Integer postID){
-        repository.deletePost(postID);
-    }
+		repository.deletePost(postID);
+	}
 
-    public void updatePost(Post updatedPost){
-        repository.updatePost(updatedPost);
-    }
-
-    public Post getPost(Integer postId){
-        return repository.getPost(postId);
-    }
+	public void updatePost(Post updatedPost){
+		repository.updatePost(updatedPost);
+	}
+	
+	public Post getPost(Integer postId){
+		return repository.getPost(postId);
+	}
 }

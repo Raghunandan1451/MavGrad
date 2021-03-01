@@ -1,47 +1,40 @@
 package com.upgrad.mavgrad.model;
 
 import javax.persistence.*;
+// import java.util.ArrayList;
+// import java.util.List;
 
 @Entity
-@Table(name = "users", catalog = "test")
+@Table(name="user")
 public class User {
+	public User(){
+		System.out.println("*********** User ***********");
+	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "userid")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id")
 	private Integer id;
-	@Column(name = "username")
-	private String userName;
-	@Column(name = "password")
+
+	@Column(name="username")
+	private String username;
+
+	@Column(name="password")
 	private String password;
-	@Column(name = "full_name")
-	private String fullName;
 
-	public User() {
-		super();
+	// @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	// @JoinColumn(name="profile_id")
+	// private UserProfile userProfile;
+
+	// @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	// private List<Post> post= new ArrayList<Post>();
+
+	public String getUsername() {
+		return username;
 	}
 
-	public User(Integer id, String userName, String password, String fullName) {
-		this.id = id;
-		this.userName = userName;
-		this.password = password;
-		this.fullName = fullName;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -51,12 +44,28 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getFullName() {
-		return fullName;
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setId(Integer id) {
+		this.id = id;
 	}
+
+	// public UserProfile getUserProfile() {
+	// 	return userProfile;
+	// }
+
+	// public void setUserProfile(UserProfile userProfile) {
+	// 	this.userProfile = userProfile;
+	// }
+
+	// public List<Post> getPost() {
+	// 	return post;
+	// }
+
+	// public void setPost(List<Post> post) {
+	// 	this.post = post;
+	// }
 }

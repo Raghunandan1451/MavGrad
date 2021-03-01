@@ -8,7 +8,9 @@ import java.util.List;
 
 @Repository
 public class PostRepository {
-	
+	public PostRepository(){
+		System.out.println("*********** PostRepository ***********");
+	}
 	@PersistenceUnit(unitName = "mavgd")
 	private EntityManagerFactory emf;
 	public List<Post> getAllPosts(){

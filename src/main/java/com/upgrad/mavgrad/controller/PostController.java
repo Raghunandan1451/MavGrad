@@ -2,6 +2,7 @@ package com.upgrad.mavgrad.controller;
 
 import com.upgrad.mavgrad.model.Post;
 import com.upgrad.mavgrad.service.PostService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 // import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 @Controller
 public class PostController {
+	public PostController(){
+		System.out.println("*********** PostController ***********");
+	}
 	//localhost:8080/posts : GET
 	@Autowired
 	PostService postService;
-	
 	@RequestMapping("/posts")
 	public String getUserPost(Model model){
 		List<Post> posts= postService.getAllPosts();
