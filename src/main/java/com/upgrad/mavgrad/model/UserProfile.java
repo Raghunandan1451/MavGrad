@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name="user_profile")
 public class UserProfile {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
 
@@ -18,12 +18,6 @@ public class UserProfile {
 
 	@Column(name="mobile_number")
 	private String mobileNumber;
-
-	@Column(name="gender")
-	private String gender;
-
-	@Column(name="address")
-	private String address;
 
 	public Integer getId() {
 		return id;
@@ -72,4 +66,10 @@ public class UserProfile {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	@Column(name="gender")
+	private String gender;
+
+	@Column(name="address")
+	private String address;
 }

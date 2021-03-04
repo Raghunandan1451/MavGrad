@@ -2,7 +2,6 @@ package com.upgrad.mavgrad.service;
 
 import com.upgrad.mavgrad.model.Post;
 import com.upgrad.mavgrad.repository.PostRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -25,20 +24,16 @@ public class PostService {
 	public List<Post> getAllPosts(){
 		return repository.getAllPosts();
 	}
-
 	public void  createPost(Post newPost){
 		Integer id=repository.createPost(newPost);
 		System.out.println("done with create post with Id: "+id);
 	}
-
 	public void deletePost(Integer postID){
 		repository.deletePost(postID);
 	}
-
 	public void updatePost(Post updatedPost){
 		repository.updatePost(updatedPost);
 	}
-	
 	public Post getPost(Integer postId){
 		return repository.getPost(postId);
 	}

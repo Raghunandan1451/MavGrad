@@ -2,7 +2,6 @@ package com.upgrad.mavgrad.controller;
 
 import com.upgrad.mavgrad.model.Post;
 import com.upgrad.mavgrad.service.PostService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

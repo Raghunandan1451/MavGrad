@@ -1,11 +1,11 @@
 package com.upgrad.mavgrad.model;
 
 import javax.persistence.*;
-// import java.util.ArrayList;
-// import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 	public User(){
 		System.out.println("*********** User ***********");
@@ -22,12 +22,12 @@ public class User {
 	@Column(name="password")
 	private String password;
 
-	// @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	// @JoinColumn(name="profile_id")
-	// private UserProfile userProfile;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="profile_id")
+	private UserProfile profile;
 
-	// @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-	// private List<Post> post= new ArrayList<Post>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	private List<Post> post= new ArrayList<Post>();
 
 	public String getUsername() {
 		return username;
@@ -44,7 +44,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 	public Integer getId() {
 		return id;
 	}
@@ -53,19 +52,19 @@ public class User {
 		this.id = id;
 	}
 
-	// public UserProfile getUserProfile() {
-	// 	return userProfile;
-	// }
+	public List<Post> getPost() {
+		return post;
+	}
 
-	// public void setUserProfile(UserProfile userProfile) {
-	// 	this.userProfile = userProfile;
-	// }
+	public UserProfile getProfile() {
+		return profile;
+	}
 
-	// public List<Post> getPost() {
-	// 	return post;
-	// }
+	public void setProfile(UserProfile profile) {
+		this.profile = profile;
+	}
 
-	// public void setPost(List<Post> post) {
-	// 	this.post = post;
-	// }
+	public void setPost(List<Post> post) {
+		this.post = post;
+	}
 }

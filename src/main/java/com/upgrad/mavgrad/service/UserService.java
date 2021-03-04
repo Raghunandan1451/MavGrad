@@ -1,6 +1,9 @@
 package com.upgrad.mavgrad.service;
 
 import com.upgrad.mavgrad.model.User;
+// import com.upgrad.mavgrad.repository.PostRepository;
+import com.upgrad.mavgrad.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -8,12 +11,18 @@ public class UserService {
 	public UserService(){
 		System.out.println("*********** UserService ***********");
 	}
-	public boolean login(User user){
-		if(user.getUsername().equals("admin") && user.getPassword().equals("admin123")){
-			return true;
+	@Autowired
+	private UserRepository repository;
+	public User login(User user){
+		User existingUser = repository.checkUser(user.getUsername(),user.getPassword());
+		if(existingUser!=null){
+			return existingUser;
 		}else{
-			return false;
+			return null;
 		}
+	}
 
+	public void registerUser(User newUser){
+		repository.register(newUser);
 	}
 }

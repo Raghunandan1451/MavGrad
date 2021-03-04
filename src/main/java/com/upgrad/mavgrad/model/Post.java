@@ -1,7 +1,10 @@
 package com.upgrad.mavgrad.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name="posts")
 public class Post {
@@ -9,7 +12,7 @@ public class Post {
 		System.out.println("*********** Post ***********");
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
 	private Integer id;
 
@@ -19,12 +22,15 @@ public class Post {
 	@Column(name="body")
 	private String body;
 
-	@Transient
+	@Column(name = "date")
 	private Date date;
 
-	// @ManyToOne(fetch = FetchType.EAGER)
-	// @JoinColumn(name="user_id")
-	// private User user;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="user_id")
+	private User user;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Category> categories= new ArrayList<Category>();
 
 	public Integer getId() {
 		return id;

@@ -11,7 +11,7 @@ public class PostRepository {
 	public PostRepository(){
 		System.out.println("*********** PostRepository ***********");
 	}
-	@PersistenceUnit(unitName = "mavgd")
+	@PersistenceUnit(unitName = "techblog")
 	private EntityManagerFactory emf;
 	public List<Post> getAllPosts(){
 		EntityManager em= emf.createEntityManager();
