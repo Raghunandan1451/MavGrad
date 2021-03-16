@@ -32,6 +32,12 @@ public class Post {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Category> categories= new ArrayList<Category>();
 
+	@Transient
+	private String JavaBlog;
+
+	@Transient
+	private String SpringBlog;
+
 	public Integer getId() {
 		return id;
 	}
@@ -62,5 +68,37 @@ public class Post {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public String getJavaBlog() {
+		return JavaBlog;
+	}
+
+	public void setJavaBlog(String javaBlog) {
+		this.JavaBlog = javaBlog;
+	}
+
+	public String getSpringBlog() {
+		return SpringBlog;
+	}
+
+	public void setSpringBlog(String springBlog) {
+		this.SpringBlog = springBlog;
 	}
 }

@@ -1,6 +1,8 @@
 package com.upgrad.mavgrad.controller;
 
+import com.upgrad.mavgrad.model.Category;
 import com.upgrad.mavgrad.model.Post;
+import com.upgrad.mavgrad.model.User;
 import com.upgrad.mavgrad.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 // import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,22 +25,40 @@ public class PostController {
 	@Autowired
 	PostService postService;
 	@RequestMapping("/posts")
-	public String getUserPost(Model model){
-		List<Post> posts= postService.getAllPosts();
+	public String getUserPost(Model model,HttpSession session){
+		User user = (User) session.getAttribute("loggeduser");
+		List<Post> posts= postService.getAllPosts(user.getId());
 		model.addAttribute("posts",posts);
 		return "posts";
 	}
-	//TO DO: GET : posts/newpost  ,  POST: post/create
+
 	@RequestMapping("/posts/newpost")
 	public String newPost(){
 		return "posts/create";
 	}
+
 	@RequestMapping(value="/posts/create", method= RequestMethod.POST)
-	public String createPost(Post newPost){
+	public String createPost(Post newPost, HttpSession session){
+		//pick the user
+		User user = (User) session.getAttribute("loggeduser");
+		newPost.setUser(user);
+
+		if(newPost.getJavaBlog()!=null){
+			Category javaBlogCategory= new Category();
+			javaBlogCategory.setCategory(newPost.getJavaBlog());
+			newPost.getCategories().add(javaBlogCategory);
+		}
+		if(newPost.getSpringBlog()!=null){
+			Category springBlogCategory= new Category();
+			springBlogCategory.setCategory(newPost.getSpringBlog());
+			newPost.getCategories().add(springBlogCategory);
+		}
 		newPost.setDate(new Date());
 		postService.createPost(newPost);
 		return "redirect:/posts";
 	}
+
+
 	@RequestMapping(value="/deletepost", method = RequestMethod.DELETE)
 	public String deletePostSubmit(@RequestParam(name="postId") Integer postId){
 		postService.deletePost(postId);
@@ -52,11 +73,11 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "/editpost", method = RequestMethod.PUT)
-	public String editPostSubmit(@RequestParam(value = "postId") Integer postId, Post updatedPost){
+	public String editPostSubmit(@RequestParam(value = "postId") Integer postId, Post updatedPost ,HttpSession session){
 		updatedPost.setId(postId);
+		User user = (User) session.getAttribute("loggeduser");
+		updatedPost.setUser(user);
 		postService.updatePost(updatedPost);
 		return "redirect:/posts";
 	}
-
-
 }
