@@ -23,6 +23,11 @@ public class UserService {
 	}
 
 	public void registerUser(User newUser){
-		repository.register(newUser);
+		User existingUser = repository.checkUser(newUser.getUsername(),newUser.getPassword());
+		if(existingUser == null){
+			repository.register(newUser);
+		}else{
+			System.out.println("User Already exist");
+		}
 	}
 }
